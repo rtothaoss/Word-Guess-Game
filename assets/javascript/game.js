@@ -15,11 +15,12 @@ document.onkeyup = function(event) {
 var userGuess = event.key;
 
 var userChoiceText = document.getElementById('userchoice-text');
-var rapperText = document.getElementById('rapper-text')
+var rapperText = document.getElementById('rapper-text');
+var numberOfGuessesText = document.getElementById('numberOfGuesses-text');
 
 userChoiceText.textContent = userGuess;
 rapperText.textContent = randomRapper;    
-
+numberOfGuessesText.textContent = numberOfGuesses;
 
 // var regex = /[(event.key)]/g;
 // userGuess = randomRapper.match(regex)
@@ -29,8 +30,11 @@ if (randomRapper.indexOf(userGuess) > -1 ) {
     console.log('found it')
 } else {
     console.log('not found');
+    numberOfGuesses--;
 }
-
+if (numberOfGuesses === -1) {
+    alert('you lose you big loser');
+}
 
 }
 
