@@ -6,6 +6,19 @@ var wins = 0;
 var numberOfGuesses = 12;
 var lettersGuessed = [];
 
+// attempt at making img array for rappers
+// attempt at making img array for rappers
+// var imgArray = new Array();
+
+// imgArray[0] = new Image();
+// imgArray[0].src = 'assets/images/lilpump.jpg';
+// imgArray[0] = rappers[0]
+
+// console.log(imgArray[0]);
+
+
+
+
 // random rapper generator 
 // random rapper generator 
 var randomRapper = rappers[Math.floor(Math.random() * rappers.length)];
@@ -18,7 +31,7 @@ var randomRapper = rappers[Math.floor(Math.random() * rappers.length)];
 document.onkeyup = function(event) {
 
 var userGuess = event.key;
-lettersGuessed.push(event.key);
+// lettersGuessed.push(event.key);
 
 
 // printing text to html
@@ -28,7 +41,7 @@ var userChoiceText = document.getElementById('userchoice-text');
 var rapperText = document.getElementById('rapper-text');
 var numberOfGuessesText = document.getElementById('numberOfGuesses-text');
 
-userChoiceText.textContent = lettersGuessed;
+// userChoiceText.textContent = lettersGuessed;
 rapperText.textContent = randomRapper;    
 numberOfGuessesText.textContent = numberOfGuesses;
 
@@ -41,7 +54,9 @@ if (randomRapper.indexOf(userGuess) > -1 ) {
 } else {
     console.log('not found');
     numberOfGuesses--;
-    console.log(lettersGuessed);
+    lettersGuessed.push(event.key);
+    userChoiceText.textContent = lettersGuessed;
+    // console.log(lettersGuessed);
 }
 if (numberOfGuesses === -1) {
     alert('you lose you big loser');
@@ -52,3 +67,8 @@ if (numberOfGuesses === -1) {
 }
 
 
+// figure out how to censor out the rapper names
+// then write the if statement for the wins if they guess the name
+// figure out how to get rid of repeat keystrokes
+// figure out how to log only the wrong keystrokes and not all of them
+// figure out how to bring up an image of the rapper when his name comes up
