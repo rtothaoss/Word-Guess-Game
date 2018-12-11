@@ -1,10 +1,14 @@
 // Global Variables
 // Global Variables
 
-var rappers = ["lil pump", "lil uzi vert", "lil xan", "kodak black", "migos", "post malone"];
+var rappers = ["lilpump", "liluzivert", "lilxan", "kodakblack", "migos", "post malone"];
 var wins = 0;
 var numberOfGuesses = 12;
-var lettersGuessed = [];
+var lettersGuessed = []; 
+
+
+
+
 
 // attempt at making img array for rappers
 // attempt at making img array for rappers
@@ -24,6 +28,18 @@ var lettersGuessed = [];
 var randomRapper = rappers[Math.floor(Math.random() * rappers.length)];
 // alert(randomRapper)
 
+
+var answerArray = [];
+
+
+for (var i = 0; i < randomRapper.length; i++) {
+    answerArray[i] = "_";
+}
+console.log(answerArray);
+
+var remainingLetters = randomRapper.length;
+
+console.log(remainingLetters);
 
 
 // What key is pressed and if statement
@@ -63,12 +79,11 @@ if (numberOfGuesses === -1) {
 }
 
 
-
 }
+
 
 
 // figure out how to censor out the rapper names
 // then write the if statement for the wins if they guess the name
 // figure out how to get rid of repeat keystrokes
-// figure out how to log only the wrong keystrokes and not all of them
-// figure out how to bring up an image of the rapper when his name comes up
+// figure out how to bring up an image of the rapper when his name comes up...probably an img array
