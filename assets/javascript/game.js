@@ -2,12 +2,8 @@
 // Global Variables
 
 var rappers = ["lil pump", "lil uzi vert", "lil xan", "kodak black", "migos", "post malone"];
-// var rappersNoSpace = rappers.map(function (rapper) {
-//     return rapper.replace("/ /g", "");
-// })
-// console.log(rappersNoSpace);
 var wins = 0;
-
+var loss = 0;
 var numberOfGuesses = 12;
 var lettersGuessed = [];
 
@@ -29,6 +25,7 @@ var lettersGuessed = [];
 
 // random rapper generator 
 // random rapper generator 
+
 var randomRapper = rappers[Math.floor(Math.random() * rappers.length)];
 // alert(randomRapper)
 
@@ -47,12 +44,51 @@ var remainingLetters = randomRapper.length;
 console.log(remainingLetters);
 
 
+
+
+
+
+
 // What key is pressed and if statement
 // What key is pressed and if statement
 document.onkeyup = function(event) {
 
 var userGuess = event.key;
 // lettersGuessed.push(event.key);
+
+
+//gets rid of repeat keystrokes
+//gets rid of repeat keystrokes
+
+if(lettersGuessed.includes(userGuess)){
+    return;
+}
+
+//win loss function
+//win loss function
+
+
+var compare = function (remainingLetters, numberOfGuesses) {
+    if(remainingLetters === 0) {
+        return 'win';
+    }
+    if(remainingLetters > 0 && numberOfGuesses === 0) {
+        return 'loss';
+    }
+}
+
+var result = compare(remainingLetters, numberOfGuesses) 
+    if(result === 'win') {
+        wins++
+        alert("you win!!!!")
+    }
+    if(result === 'loss') {
+        loss++
+        alert('you lose')
+    }
+
+console.log(result)
+
 
 
 // printing text to html
@@ -62,23 +98,24 @@ var userChoiceText = document.getElementById('userchoice-text');
 var rapperText = document.getElementById('rapper-text');
 var rapperText1 = document.getElementById('rapper-text1');
 var numberOfGuessesText = document.getElementById('numberOfGuesses-text');
+var winsText = document.getElementById('wins-text');
 
 // userChoiceText.textContent = lettersGuessed;
 rapperText.textContent = answerArray;    
 rapperText1.textContent = randomRapper;    
 numberOfGuessesText.textContent = numberOfGuesses;
+winsText.textContent = wins;
 
 // var regex = /[(event.key)]/g;
 // userGuess = randomRapper.match(regex)
 // console.log(userGuess);
 
 
-
+//game state...running....win...lose
 if (remainingLetters > 0) {
-console.log(remainingLetters)
+   
 
 }
-
 
 if (randomRapper.indexOf(userGuess) > -1) {
     console.log('found it');
@@ -92,26 +129,28 @@ if (randomRapper.indexOf(userGuess) > -1) {
 
     console.log(answerArray);
     remainingLetters--;
-        
+     
 
 } else {
     console.log('not found');
     numberOfGuesses--;
     lettersGuessed.push(event.key);
     userChoiceText.textContent = lettersGuessed;
-    // console.log(lettersGuessed);
-}
-if (numberOfGuesses === -1) {
-    alert('you lose you big loser');
-}
-
-
+    
 
 }
+// if (numberOfGuesses === -1) {
+//     alert('you lose you big loser');
+// }
+
+}
 
 
 
-// figure out how to censor out the rapper names
+
+
+
+
 // then write the if statement for the wins if they guess the name
 // figure out how to get rid of repeat keystrokes
 // figure out how to bring up an image of the rapper when his name comes up...probably an img array
