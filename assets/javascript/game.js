@@ -1,11 +1,15 @@
 // Global Variables
 // Global Variables
 
-var rappers = ["lilpump", "liluzivert", "lilxan", "kodakblack", "migos", "post malone"];
+var rappers = ["lil pump", "lil uzi vert", "lil xan", "kodak black", "migos", "post malone"];
+// var rappersNoSpace = rappers.map(function (rapper) {
+//     return rapper.replace("/ /g", "");
+// })
+// console.log(rappersNoSpace);
 var wins = 0;
-var numberOfGuesses = 12;
-var lettersGuessed = []; 
 
+var numberOfGuesses = 12;
+var lettersGuessed = [];
 
 
 
@@ -30,12 +34,13 @@ var randomRapper = rappers[Math.floor(Math.random() * rappers.length)];
 
 
 var answerArray = [];
-
-
 for (var i = 0; i < randomRapper.length; i++) {
-    answerArray[i] = "_";
+    if (randomRapper.charAt(i) === ' ') {
+        answerArray[i] = " ";
+    } else {
+        answerArray[i] = "_";
+    }
 }
-console.log(answerArray);
 
 var remainingLetters = randomRapper.length;
 
@@ -55,18 +60,40 @@ var userGuess = event.key;
 
 var userChoiceText = document.getElementById('userchoice-text');
 var rapperText = document.getElementById('rapper-text');
+var rapperText1 = document.getElementById('rapper-text1');
 var numberOfGuessesText = document.getElementById('numberOfGuesses-text');
 
 // userChoiceText.textContent = lettersGuessed;
-rapperText.textContent = randomRapper;    
+rapperText.textContent = answerArray;    
+rapperText1.textContent = randomRapper;    
 numberOfGuessesText.textContent = numberOfGuesses;
 
 // var regex = /[(event.key)]/g;
 // userGuess = randomRapper.match(regex)
 // console.log(userGuess);
 
-if (randomRapper.indexOf(userGuess) > -1 ) {
-    console.log('found it')
+
+
+if (remainingLetters > 0) {
+console.log(remainingLetters)
+
+}
+
+
+if (randomRapper.indexOf(userGuess) > -1) {
+    console.log('found it');
+
+    // loop over every randomRapper character and assign it to answerArray if it matched
+    for (var i = 0; i < randomRapper.length; i++) {
+        if (randomRapper.charAt(i) === userGuess) {
+            answerArray[i] = userGuess;
+        }
+    }
+
+    console.log(answerArray);
+    remainingLetters--;
+        
+
 } else {
     console.log('not found');
     numberOfGuesses--;
@@ -77,6 +104,7 @@ if (randomRapper.indexOf(userGuess) > -1 ) {
 if (numberOfGuesses === -1) {
     alert('you lose you big loser');
 }
+
 
 
 }
