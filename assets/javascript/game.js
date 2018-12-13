@@ -23,7 +23,6 @@ var lettersGuessed = [];
 
 
 
-
 // random rapper generator 
 // random rapper generator 
 
@@ -47,9 +46,6 @@ console.log(remainingLetters);
 
 
 
-
-
-
 // What key is pressed 
 // What key is pressed 
 document.onkeyup = function (event) {
@@ -65,6 +61,16 @@ document.onkeyup = function (event) {
         return;
     }
 
+   
+    function reset() {
+        numberOfGuesses = 12;
+        lettersGuessed = [];
+       
+    }
+   
+   
+   
+   
     //win loss function
     //win loss function
 
@@ -77,20 +83,21 @@ document.onkeyup = function (event) {
             return 'loss';
         }
     }
+    
 
     var result = compare(remainingLetters, numberOfGuesses)
     if (result === 'win') {
         wins++
         alert("you win!!!!")
-        newGame();
+        reset()
     }
     if (result === 'loss') {
         loss++
         alert('you lose')
+        reset()
     }
 
     console.log(result)
-
 
 
     // printing text to html
@@ -135,6 +142,9 @@ document.onkeyup = function (event) {
         userChoiceText.textContent = lettersGuessed;
     }
    
+ 
+
+
 }
 
 
