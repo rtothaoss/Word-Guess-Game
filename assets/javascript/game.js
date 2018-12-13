@@ -10,6 +10,7 @@ var lettersGuessed = [];
 
 
 
+
 // attempt at making img array for rappers
 // attempt at making img array for rappers
 // var imgArray = new Array();
@@ -49,102 +50,92 @@ console.log(remainingLetters);
 
 
 
-// What key is pressed and if statement
-// What key is pressed and if statement
-document.onkeyup = function(event) {
+// What key is pressed 
+// What key is pressed 
+document.onkeyup = function (event) {
 
-var userGuess = event.key;
-// lettersGuessed.push(event.key);
-
-
-//gets rid of repeat keystrokes
-//gets rid of repeat keystrokes
-
-if(lettersGuessed.includes(userGuess)){
-    return;
-}
-
-//win loss function
-//win loss function
+    var userGuess = event.key;
 
 
-var compare = function (remainingLetters, numberOfGuesses) {
-    if(remainingLetters === 0) {
-        return 'win';
+
+    //gets rid of repeat keystrokes
+    //gets rid of repeat keystrokes
+
+    if (lettersGuessed.includes(userGuess)) {
+        return;
     }
-    if(remainingLetters > 0 && numberOfGuesses === 0) {
-        return 'loss';
-    }
-}
 
-var result = compare(remainingLetters, numberOfGuesses) 
-    if(result === 'win') {
+    //win loss function
+    //win loss function
+
+
+    var compare = function (remainingLetters, numberOfGuesses) {
+        if (remainingLetters === 0) {
+            return 'win';
+        }
+        if (remainingLetters > 0 && numberOfGuesses === 0) {
+            return 'loss';
+        }
+    }
+
+    var result = compare(remainingLetters, numberOfGuesses)
+    if (result === 'win') {
         wins++
         alert("you win!!!!")
+        newGame();
     }
-    if(result === 'loss') {
+    if (result === 'loss') {
         loss++
         alert('you lose')
     }
 
-console.log(result)
+    console.log(result)
 
 
 
-// printing text to html
-// printing text to html
+    // printing text to html
+    // printing text to html
 
-var userChoiceText = document.getElementById('userchoice-text');
-var rapperText = document.getElementById('rapper-text');
-var rapperText1 = document.getElementById('rapper-text1');
-var numberOfGuessesText = document.getElementById('numberOfGuesses-text');
-var winsText = document.getElementById('wins-text');
+    var userChoiceText = document.getElementById('userchoice-text');
+    var rapperText = document.getElementById('rapper-text');
+    var rapperText1 = document.getElementById('rapper-text1');
+    var numberOfGuessesText = document.getElementById('numberOfGuesses-text');
+    var winsText = document.getElementById('wins-text');
 
-// userChoiceText.textContent = lettersGuessed;
-rapperText.textContent = answerArray;    
-rapperText1.textContent = randomRapper;    
-numberOfGuessesText.textContent = numberOfGuesses;
-winsText.textContent = wins;
-
-// var regex = /[(event.key)]/g;
-// userGuess = randomRapper.match(regex)
-// console.log(userGuess);
+    // userChoiceText.textContent = lettersGuessed;
+    rapperText.textContent = answerArray;
+    rapperText1.textContent = randomRapper;
+    numberOfGuessesText.textContent = numberOfGuesses;
+    winsText.textContent = wins;
 
 
-//game state...running....win...lose
-if (remainingLetters > 0) {
-   
 
-}
-
-if (randomRapper.indexOf(userGuess) > -1) {
-    console.log('found it');
-
-    // loop over every randomRapper character and assign it to answerArray if it matched
-    for (var i = 0; i < randomRapper.length; i++) {
-        if (randomRapper.charAt(i) === userGuess) {
-            answerArray[i] = userGuess;
-        }
+    //game state
+    if (remainingLetters > 0) {
     }
 
-    console.log(answerArray);
-    remainingLetters--;
-     
+    if (randomRapper.indexOf(userGuess) > -1) {
+        console.log('found it');
 
-} else {
-    console.log('not found');
-    numberOfGuesses--;
-    lettersGuessed.push(event.key);
-    userChoiceText.textContent = lettersGuessed;
-    
+        // loop over every randomRapper character and assign it to answerArray if it matched
+        for (var i = 0; i < randomRapper.length; i++) {
+            if (randomRapper.charAt(i) === userGuess) {
+                answerArray[i] = userGuess;
+            }
+        }
 
+        console.log(answerArray);
+        remainingLetters--;
+
+
+    } else {
+        console.log('not found');
+        numberOfGuesses--;
+        lettersGuessed.push(event.key);
+        userChoiceText.textContent = lettersGuessed;
+    }
+   
 }
-// if (numberOfGuesses === -1) {
-//     alert('you lose you big loser');
-// }
-
-}
-
 
 
 
