@@ -3,9 +3,12 @@
 
 var rappers = ["lil pump", "lil uzi vert", "lil xan", "kodak black", "migos", "post malone"];
 var wins = 0;
-var loss = 0;
+// var loss = 0;
 var numberOfGuesses = 12;
 var lettersGuessed = [];
+var randomRapper;
+var answerArray;
+var remainingLetters;
 
 
 
@@ -26,25 +29,38 @@ var lettersGuessed = [];
 // random rapper generator 
 // random rapper generator 
 
-var randomRapper = rappers[Math.floor(Math.random() * rappers.length)];
+// var randomRapper = rappers[Math.floor(Math.random() * rappers.length)];
 // alert(randomRapper)
 
+function beginRound() {
 
-var answerArray = [];
-for (var i = 0; i < randomRapper.length; i++) {
-    if (randomRapper.charAt(i) === ' ') {
-        answerArray[i] = " ";
-    } else {
-        answerArray[i] = "_";
+    randomRapper = rappers[Math.floor(Math.random() * rappers.length)];
+
+    answerArray = [];
+    for (var i = 0; i < randomRapper.length; i++) {
+        if (randomRapper.charAt(i) === ' ') {
+            answerArray[i] = " ";
+        } else {
+            answerArray[i] = "_";
+        }
     }
+
+    remainingLetters = randomRapper.length;
+
+    console.log(remainingLetters);
+
 }
 
-var remainingLetters = randomRapper.length;
+beginRound();
 
-console.log(remainingLetters);
-
-
-
+var compare = function (remainingLetters, numberOfGuesses) {
+    if (remainingLetters === 0) {
+        return 'win';
+    }
+    if (remainingLetters > 0 && numberOfGuesses === 0) {
+        return 'loss';
+    }
+}
 
 // What key is pressed 
 // What key is pressed 
@@ -52,6 +68,7 @@ document.onkeyup = function (event) {
 
     var userGuess = event.key;
 
+    numberOfGuesses--;
 
 
     //gets rid of repeat keystrokes
@@ -60,30 +77,20 @@ document.onkeyup = function (event) {
     if (lettersGuessed.includes(userGuess)) {
         return;
     }
-
-   
+    
     function reset() {
         numberOfGuesses = 12;
         lettersGuessed = [];
-       
+        beginRound();
     }
-   
-   
-   
-   
+
+
+
+
     //win loss function
     //win loss function
 
 
-    var compare = function (remainingLetters, numberOfGuesses) {
-        if (remainingLetters === 0) {
-            return 'win';
-        }
-        if (remainingLetters > 0 && numberOfGuesses === 0) {
-            return 'loss';
-        }
-    }
-    
 
     var result = compare(remainingLetters, numberOfGuesses)
     if (result === 'win') {
@@ -92,7 +99,7 @@ document.onkeyup = function (event) {
         reset()
     }
     if (result === 'loss') {
-        loss++
+        // loss++
         alert('you lose')
         reset()
     }
@@ -115,7 +122,7 @@ document.onkeyup = function (event) {
     numberOfGuessesText.textContent = numberOfGuesses;
     winsText.textContent = wins;
 
-
+    
 
     //game state
     if (remainingLetters > 0) {
@@ -137,12 +144,12 @@ document.onkeyup = function (event) {
 
     } else {
         console.log('not found');
-        numberOfGuesses--;
         lettersGuessed.push(event.key);
         userChoiceText.textContent = lettersGuessed;
     }
-   
- 
+
+
+
 
 
 }
