@@ -77,7 +77,7 @@ document.onkeyup = function (event) {
     if (lettersGuessed.includes(userGuess)) {
         return;
     }
-    
+
     function reset() {
         numberOfGuesses = 12;
         lettersGuessed = [];
@@ -112,17 +112,17 @@ document.onkeyup = function (event) {
 
     var userChoiceText = document.getElementById('userchoice-text');
     var rapperText = document.getElementById('rapper-text');
-    var rapperText1 = document.getElementById('rapper-text1');
+    // var rapperText1 = document.getElementById('rapper-text1');
     var numberOfGuessesText = document.getElementById('numberOfGuesses-text');
     var winsText = document.getElementById('wins-text');
 
     // userChoiceText.textContent = lettersGuessed;
     rapperText.textContent = answerArray;
-    rapperText1.textContent = randomRapper;
+    // rapperText1.textContent = randomRapper;
     numberOfGuessesText.textContent = numberOfGuesses;
     winsText.textContent = wins;
 
-    
+
 
     //game state
     if (remainingLetters > 0) {
@@ -135,6 +135,7 @@ document.onkeyup = function (event) {
         for (var i = 0; i < randomRapper.length; i++) {
             if (randomRapper.charAt(i) === userGuess) {
                 answerArray[i] = userGuess;
+
             }
         }
 
@@ -149,9 +150,9 @@ document.onkeyup = function (event) {
     }
 
 
-
-
-
+    var rapperText = document.getElementById('rapper-text');
+    rapperText.textContent = answerArray;
+    console.log(remainingLetters);
 }
 
 
@@ -159,6 +160,3 @@ document.onkeyup = function (event) {
 
 
 
-// then write the if statement for the wins if they guess the name
-// figure out how to get rid of repeat keystrokes
-// figure out how to bring up an image of the rapper when his name comes up...probably an img array
